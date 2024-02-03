@@ -12,18 +12,25 @@ window.addEventListener('load', () => {
     switch (true) {
       case playerSelection === computerSelection:
         return "It's a tie"
+
       case playerSelection === 'rock' && computerSelection === 'scissors':
         return 'You win! Rock beats Scissors'
+
       case playerSelection === 'rock' && computerSelection === 'paper':
         return 'You lose! Paper beats rock'
+
       case playerSelection === 'paper' && computerSelection === 'rock':
         return 'You win! Paper beats rock'
+
       case playerSelection === 'paper' && computerSelection === 'scissors':
         return 'You lose! Scissors beats paper'
+
       case playerSelection === 'scissors' && computerSelection === 'paper':
         return 'You win! Scissors beats paper'
+
       case playerSelection === 'scissors' && computerSelection === 'rock':
         return 'You lose! Rock beats Scissors'
+
       default:
         return 'Invalid Selection'
     }
