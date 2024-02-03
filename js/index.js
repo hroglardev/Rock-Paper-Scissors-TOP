@@ -55,7 +55,7 @@ const playGame = () => {
 
   if (myScore === 5) {
     console.log('Congrats you won the game')
-  } else if (computerScore === 5) {
+  } else {
     console.log('You lost the game')
   }
 }
