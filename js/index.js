@@ -25,18 +25,22 @@ const playRound = (playerSelection, computerSelection) => {
   }
 }
 
+const ROCK = 'Rock'
+const PAPER = 'Paper'
+const SCISSORS = 'Scissors'
+let myScore = 0
+let computerScore = 0
+
 const playGame = () => {
-  let myScore = 0
-  let computerScore = 0
-  while (myScore < 5 || computerScore < 5) {
-    let myChoice = prompt('Choose Rock, Paper or Scissors')
-    if (myChoice.length === 0 || myChoice.trim().length === 0) {
-      console.log('Must input an option')
-      playGame()
+  while (myScore < 5 && computerScore < 5) {
+    let myChoice = prompt('Choose Rock, Paper or Scissors').toLowerCase()
+    while (myChoice !== ROCK.toLowerCase() && myChoice !== PAPER.toLowerCase() && myChoice !== SCISSORS.toLowerCase()) {
+      console.log('You must choose among Rock, Paper or Scissors')
+      myChoice = prompt('You must choose among Rock, Paper or Scissors')
     }
 
-    let pcChoice = getComputerChoice()
-    let result = playRound(myChoice.toLowerCase(), pcChoice.toLowerCase())
+    let pcChoice = getComputerChoice().toLowerCase()
+    let result = playRound(myChoice, pcChoice)
     if (result.includes('You lose')) {
       computerScore++
       console.log(`${result}. Your score is ${myScore} and computer's is ${computerScore}`)
@@ -51,7 +55,7 @@ const playGame = () => {
 
   if (myScore === 5) {
     console.log('Congrats you won the game')
-  } else {
+  } else if (computerScore === 5) {
     console.log('You lost the game')
   }
 }
