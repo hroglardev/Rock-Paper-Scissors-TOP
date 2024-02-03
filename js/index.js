@@ -10,17 +10,17 @@ const getComputerChoice = () => {
 const playRound = (playerSelection, computerSelection) => {
   if (playerSelection === computerSelection) {
     return "It's a tie"
-  } else if (playerSelection === 'Rock' && computerSelection === 'Scissors') {
-    return 'You win! Rock beats Scissors'
-  } else if (playerSelection === 'Rock' && computerSelection === 'Paper') {
+  } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+    return 'You win! Rock beats scissors'
+  } else if (playerSelection === 'rock' && computerSelection === 'paper') {
     return 'You lose! Paper beats Rock'
-  } else if (playerSelection === 'Paper' && computerSelection === 'Rock') {
-    return 'You win! Paper beats Rock'
-  } else if (playerSelection === 'Paper' && computerSelection === 'Scissors') {
+  } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+    return 'You win! Paper beats rock'
+  } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
     return 'You lose! Scissors beats paper'
-  } else if (playerSelection === 'Scissors' && computerSelection === 'Paper') {
-    return 'You win! Scissors beats Paper'
-  } else if (playerSelection === 'Scissors' && computerSelection === 'Rock') {
+  } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+    return 'You win! Scissors beats paper'
+  } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
     return 'You lose! Rock beats Scissors'
   }
 }
@@ -30,16 +30,21 @@ const playGame = () => {
   let computerScore = 0
   while (myScore < 5 || computerScore < 5) {
     let myChoice = prompt('Choose Rock, Paper or Scissors')
+    if (myChoice.length === 0 || myChoice.trim().length === 0) {
+      console.log('Must input an option')
+      playGame()
+    }
+
     let pcChoice = getComputerChoice()
-    let result = playRound(myChoice[0].toUpperCase() + myChoice.slice(1).toLowerCase(), pcChoice[0].toUpperCase() + myChoice.slice(1).toLowerCase())
+    let result = playRound(myChoice.toLowerCase(), pcChoice.toLowerCase())
     if (result.includes('You lose')) {
       computerScore++
-      console.log(`You lost the round. Your score is ${myScore} and computer's is ${computerScore}`)
+      console.log(`${result}. Your score is ${myScore} and computer's is ${computerScore}`)
     } else if (result.includes('You win')) {
       myScore++
-      console.log(`You won the round. Your score is ${myScore} and computer's is ${computerScore}`)
+      console.log(`${result}. Your score is ${myScore} and computer's is ${computerScore}`)
     } else {
-      console.log(`Tied Round. Your score is ${myScore} and computer's is ${computerScore}`)
+      console.log(`${result}. Your score is ${myScore} and computer's is ${computerScore}`)
       continue
     }
   }
