@@ -13,63 +13,73 @@ window.addEventListener('load', () => {
       case playerSelection === computerSelection:
         return "It's a tie"
 
-      case playerSelection === 'rock' && computerSelection === 'scissors':
+      case playerSelection === 'Rock' && computerSelection === 'Scissors':
         return 'You win! Rock beats Scissors'
 
-      case playerSelection === 'rock' && computerSelection === 'paper':
+      case playerSelection === 'Rock' && computerSelection === 'Paper':
         return 'You lose! Paper beats rock'
 
-      case playerSelection === 'paper' && computerSelection === 'rock':
+      case playerSelection === 'Paper' && computerSelection === 'Rock':
         return 'You win! Paper beats rock'
 
-      case playerSelection === 'paper' && computerSelection === 'scissors':
+      case playerSelection === 'Paper' && computerSelection === 'Scissors':
         return 'You lose! Scissors beats paper'
 
-      case playerSelection === 'scissors' && computerSelection === 'paper':
+      case playerSelection === 'Scissors' && computerSelection === 'Paper':
         return 'You win! Scissors beats paper'
 
-      case playerSelection === 'scissors' && computerSelection === 'rock':
+      case playerSelection === 'Scissors' && computerSelection === 'Rock':
         return 'You lose! Rock beats Scissors'
 
       default:
         return 'Invalid Selection'
     }
   }
-
-  const ROCK = 'Rock'
-  const PAPER = 'Paper'
-  const SCISSORS = 'Scissors'
   let myScore = 0
   let computerScore = 0
 
-  const playGame = () => {
-    while (myScore < 5 && computerScore < 5) {
-      let myChoice = prompt('Choose Rock, Paper or Scissors').toLowerCase()
-      while (myChoice !== ROCK.toLowerCase() && myChoice !== PAPER.toLowerCase() && myChoice !== SCISSORS.toLowerCase()) {
-        console.log('You must choose among Rock, Paper or Scissors')
-        myChoice = prompt('You must choose among Rock, Paper or Scissors')
-      }
+  const message = document.querySelector('.message')
+  const body = document.querySelector('body')
 
-      let pcChoice = getComputerChoice().toLowerCase()
-      let result = playRound(myChoice, pcChoice)
-      if (result.includes('You lose')) {
-        computerScore++
-        console.log(`${result}. Your score is ${myScore} and computer's is ${computerScore}`)
-      } else if (result.includes('You win')) {
-        myScore++
-        console.log(`${result}. Your score is ${myScore} and computer's is ${computerScore}`)
-      } else {
-        console.log(`${result}. Your score is ${myScore} and computer's is ${computerScore}`)
-        continue
-      }
-    }
+  const userScore = document.querySelector('.myScore')
+  const pcScore = document.querySelector('.computer-score')
+  const buttons = Array.from(document.querySelectorAll('button'))
 
-    if (myScore === 5) {
-      console.log('Congrats you won the game')
-    } else {
-      console.log('You lost the game')
-    }
+  const resetGame = () => {
+    myScore = 0
+    computerScore = 0
+    message.innerHTML = 'Good luck'
+    userScore.innerText = `My score is ${myScore}`
+    pcScore.innerText = `Computer's score is ${computerScore}`
+    body.removeChild(resetButton)
+    buttons.forEach((button) => button.removeAttribute('disabled'))
   }
 
-  playGame()
+  const resetButton = document.createElement('button')
+  resetButton.innerText = 'Play again'
+  resetButton.addEventListener('click', resetGame)
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      let roundResult = playRound(button.innerText, getComputerChoice())
+      if (roundResult.includes('You win')) {
+        myScore++
+        message.innerText = roundResult
+        userScore.innerText = `My score is ${myScore}`
+      } else if (roundResult.includes('You lose')) {
+        computerScore++
+        message.innerText = roundResult
+        pcScore.innerText = `Computer's score is ${computerScore}`
+      } else {
+        message.innerText = roundResult
+      }
+      if (myScore === 5 || computerScore === 5) {
+        body.appendChild(resetButton)
+        message.innerText = myScore === 5 ? 'Congrats, you won the game' : "Sorry, you've lost to the pc"
+        buttons.forEach((button) => {
+          button.setAttribute('disabled', true)
+        })
+      }
+    })
+  })
 })
