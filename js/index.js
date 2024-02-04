@@ -93,9 +93,6 @@ window.addEventListener('load', () => {
     pcScore.innerText = `Computer's score is ${computerScore}`
     body.removeChild(resetButton)
     buttons.forEach((button) => button.removeAttribute('disabled'))
-    rock.classList.remove('filter')
-    paper.classList.remove('filter')
-    scissors.classList.remove('filter')
   }
 
   const resetButton = document.createElement('button')
