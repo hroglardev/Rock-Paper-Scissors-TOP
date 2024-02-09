@@ -17,6 +17,10 @@ Below you can read what new concepts I implemented during this project.
   <li>Use of timeouts to delay some interactions.</li>
 </ul>
 
+# Want to see it in action?
+
+<a href="https://hroglardev.github.io/Rock-Paper-Scissors-TOP/" target="_blank">Click here</a>
+
 # Explanation of the code
 
 The code initialises by using an event telling the DOM to wait for the scripts to load before allowing interaction from the user, after which we find an arrow function.
@@ -68,10 +72,6 @@ This is where all the game is basically played.
   <li>Lastly, if either player reaches 5 points, the function inserts a button into the DOM to reset the game using the resetGame function. It displays a message informing who won the game and lastly it disables the buttons for playing unless the user decides to replay.</li>
 </ol>
 
-# Want to see it in action?
-
-<a href="https://hroglardev.github.io/Rock-Paper-Scissors-TOP/" target="_blank">Click here for app</a>
-
 # Want to track my progress?
 
 Checkout my other projects in order to see my evolution:
@@ -84,4 +84,6 @@ Checkout my other projects in order to see my evolution:
   <li><a href="https://github.com/hroglardev/Etch-a-Sketch" target="_blank">Etch a Sketch</a></li>
   <li><a href="https://github.com/hroglardev/Calculator" target="_blank">Calculator</a></li>
   <li><a href="https://github.com/hroglardev/Sign-up-form-TOP" target="_blank">Sign up form</a></li>
+  <li><a href="https://github.com/hroglardev/Dashboard" target="_blank">Dashboard</a></li>
+  <li><a href="https://github.com/hroglardev/Library" target="_blank">Library</a></li>
 </ol>
